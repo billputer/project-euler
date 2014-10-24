@@ -53,9 +53,18 @@ def find_greatest_product_in_grid(grid):
       greatest = x
 
   # diagonal
-  # TODO: find diagonal products
+  # upper-left-to-lower-right
+  diags = [grid.diagonal(i) for i in range(-16,17)]
+  # lower-left-to-upper-right
+  flipped = grid[::-1, :]
+  flipped_diags = [flipped.diagonal(i) for i in range(-16,17)]
+  diags.extend(flipped_diags)
+  for diag in diags:
+    x = find_greatest_product_in_array(diag)
+    if x[0] > greatest[0]:
+      greatest = x
 
-  return x
+  return greatest
 
 
 def find_greatest_product_in_array(arr):
